@@ -1,0 +1,29 @@
+import React, { Component } from 'react';
+
+class LogIn extends Component {
+  username='';
+  password='';
+
+  constructor() {
+    super();
+  this.status= {
+    username : this.username,
+    password : this.password
+  }
+}
+  render() {
+    return (
+      <div id="modal1" className="modal">
+      <div className="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div className="modal-footer">
+        <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
+    );
+  }
+}
+
+export default LogIn;
