@@ -5,7 +5,8 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        Hello
+        <img src="images/pen_bgr.jpg" className="pen-background"/>
+       
       </div>
     )
   }
