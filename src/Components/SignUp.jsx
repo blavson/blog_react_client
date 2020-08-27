@@ -3,6 +3,7 @@ import axios from 'axios'
 
 
 class SignUp extends Component {
+   errorList =''
 
   constructor() {
     super();
@@ -67,7 +68,6 @@ handleOnBlurEmail = (event) => {
   this.setState({
     isEmailValid : true
   })
-  console.log(this.validateEmail(event.target.value))
 }
 
 handleOnBlurUserName = (event) => {
