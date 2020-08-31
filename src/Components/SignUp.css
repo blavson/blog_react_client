@@ -1,0 +1,21 @@
+.toast-signedup {
+  background-color : #108600;
+  font-family: 'Cabin', serif;
+  width : 350px;
+  height : 80px;
+  font-size: larger;
+  justify-content: center;
+  color : white;
+  border-radius: 4px;
+}
+
+.toast-error {
+  background-color : crimson;
+  font-family: 'Cabin', serif;
+  width : 350px;
+  height : 80px;
+  font-size: larger;
+  justify-content: center;
+  color : white;
+  border-radius: 4px;
+}

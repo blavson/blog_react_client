@@ -39,82 +39,31 @@ export default class BlogPage extends Component {
 
   }
 
-  handleOnblurEvent = (event) => {
-      const id = event.target.id.split('_');
-      const er = this.state.errors
-    er.push( id[1] + " is empty")
+  handleOnblurTitleEvent = (event) => {
+    if (event.target.value.length > 0) {
+      this.setState({
+        title : event.target.value
+      }) 
+    } 
+   }
+  
+
+
+  handleOnblurBodyEvent = (event) => {
+    if (event.target.value.length > 0) {
     this.setState({
-      errors : er
-    })
-    console.log(this.state.errors)
-  }
+      body : event.target.value
+    }) 
+  } 
+ }
 
   handleTextOnblurEvent = (event) => {
     console.log(event.target.value)
   }
 
-  render() {
-    return (
-      <form onSubmit={this.addBlog } >
-      <div className="container">
-      <div className = "row">  
-         <div className="input-field col s6 offset-s3">
-          <label htmlFor="blog_title">Blog Title</label>
-          <input  id="blog_title" type="text" className="validate" onBlur={this.handleOnblurEvent } onChange= {this.handleInputText} required/>
-         {this.state.error ?  <span className="helper-text" data-error={this.state.error} ></span> : '' }
-         </div>
-        <div className="input-field col s6 offset-s3">  
-          <textarea  id="blog_body" className="materialize-textarea"  onBlur={this.handleOnblurEvent}  onChange={this.handleTextArea} required />  
-          <label htmlFor="comments">Blog</label>  
-        </div>
-        <div className="input-field col s6 offset-s3">
-          <label htmlFor="blog_tags">Tags</label>
-          <input  id="blog_tags" type="text" className="validate" onBlur={this.handleOnblurEvent } onChange= {this.handleInputTags}/>
-         {this.state.error ?  <span className="helper-text" data-error={this.state.error} ></span> :'' }
-         </div>
-         <ul className="error-list">
-           {this.errorList}
-        </ul>
-       <div className = "col s4 offset-s5">  
-        <button className="btn waves-effect waves-light" type="submit" name="action" >Submit
-        <i className="material-icons right">send</i>
-      </button>
-      </div>
-   </div> 
-
-   </div>
-   </form>
-    )
-  }
-  
-
-
   addBlog = (event) => {
     event.preventDefault();
 
-    if (this.state.title.length == 0) {
-      const s = this.state.errors
-      s.push("Title is empty")
-      this.setState ({
-        errors : s
-      })
-    }
-
-
-    if (this.state.body.length == 0) {
-      const s = this.state.errors
-      s.push("Body is empty")
-      this.setState ({
-        errors : s
-      })
-    }
-
-    if (this.state.errors.length > 0) {
-      this.errorList = this.state.errors.map((e, i) => {
-        return ( <li key={i} className="error-list-item">{e}</li>)
-       })
-     } 
-    else {
       const sendInfo = {
           title : this.state.title,
           body : this.state.body,
@@ -137,5 +86,41 @@ export default class BlogPage extends Component {
               M.toast({html: "Something Wrong With the title", classes :'toast-error'})
             }) 
           }
-        }
+
+  render() {
+    return (
+      <form onSubmit={this.addBlog } >
+      <div className="container">
+      <div className = "row">  
+         <div className="input-field col s6 offset-s3">
+          <label htmlFor="blog_title">Blog Title</label>
+          <input  id="blog_title" type="text" className="validate" onBlur={this.handleOnblurTitleEvent } onChange= {this.handleInputText} />
+         {this.state.error ?  <span className="helper-text" data-error={this.state.error} ></span> : '' }
+         </div>
+        <div className="input-field col s6 offset-s3">  
+          <textarea  id="blog_body" className="materialize-textarea"  onBlur={this.handleOnblurBodyEvent}  onChange={this.handleTextArea}  />  
+          <label htmlFor="comments">Blog</label>  
+        </div>
+        <div className="input-field col s6 offset-s3">
+          <label htmlFor="blog_tags">Tags</label>
+          <input  id="blog_tags" type="text" className="validate" onChange= {this.handleInputTags}/>
+         {this.state.error ?  <span className="helper-text" data-error={this.state.error} ></span> :'' }
+         </div>
+         <ul className="error-list">
+           {this.errorList}
+        </ul>
+       <div className = "col s4 offset-s5">  
+        <button className="btn waves-effect waves-light" type="submit" name="action" >Submit
+        <i className="material-icons right">send</i>
+      </button>
+      </div>
+   </div> 
+
+   </div>
+   </form>
+    )
+  }
+  
+
+
  }

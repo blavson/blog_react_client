@@ -8,6 +8,7 @@ import LogIn from './Components/LogIn'
 import SignUp from './Components/SignUp'
 import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js";
+import UserHome from './Components/UserHome';
 
 class  App extends React.Component {
 
@@ -17,8 +18,9 @@ class  App extends React.Component {
          <Route path="/" component={NavBar} />
          <Route exact path="/home" component={Home} />
          <Route exact path="/blog" component={BlogPage} />
-         <Route exact path="/form/login" component={LogIn} />
-         <Route exact path="/form/signup" component={SignUp} /> 
+         <Route exact path="/user/login" component={LogIn} />
+         <Route exact path="/user/signup" component={SignUp} /> 
+         <Route exact path="/user/home"  component={UserHome} />
       </Router>
    )
   }

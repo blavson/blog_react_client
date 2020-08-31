@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import { createBrowserHistory as history} from 'history';
+import M from  'materialize-css'
+import './SignUp.css'
 
 class SignUp extends Component {
    errorList =''
@@ -15,6 +17,7 @@ class SignUp extends Component {
       password_confirm : '',
       isEmailValid : true,
       isUserNameValid : true,
+      token : '',
       errors : []
     }
   }
@@ -94,31 +97,13 @@ handleOnBlurUserName = (event) => {
       })
     }
     console.log(this.state);
-/*
-    if (this.state.email.length === 0) {
-      const er = this.state.errors
-      er.push('Please fill email field')
-      this.setState({
-        errors : er
-      })
-    } else {
-      if (!this.validateEmail(this.state.email)) {
-        const er = this.state.errors
-        er.push('Invalid E-mail format')
-        this.setState({
-          errors : er
-        })        
-      }
-    }   
-   
-*/
+
     if (this.state.password.length === 0) {
       const er = this.state.errors
       er.push('Password is empty')
       this.setState({
         errors : er
       })
-      console.log("password length is 0")
     }    
     if (this.state.password_confirm.length === 0) {
       const er = this.state.errors
@@ -127,7 +112,6 @@ handleOnBlurUserName = (event) => {
       this.setState({
         errors : er
       })
-      console.log(this.state.errors)
     }    
     console.log(this.state);
     if (this.state.password !== this.state.password_confirm) {
@@ -145,12 +129,13 @@ handleOnBlurUserName = (event) => {
       })
     } else {
       let {username, email, password} = this.state
-      axios.post('http://127.0.0.1:8000/user/', {username, email, password})
+      axios.post('http://127.0.0.1:8000/user/signup', {username, email, password})
       .then(response => {
-
+        M.toast({html: "User successfully signed up", classes :'toast-signedup'});
+         localStorage.setItem('token', response.token);
       })
       .catch(error => {
-        console.error(error)
+        M.toast({html: "Username already exists", classes :'toast-error'});
       })
     }
     this.setState({
@@ -201,10 +186,7 @@ handleOnBlurUserName = (event) => {
           </button>
        </div>
       </div> 
-
       </div>
-
-      
    </form>
     );
   }
