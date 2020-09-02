@@ -84,7 +84,6 @@ handleOnBlurUserName = (event) => {
       isUserNameValid : true
     })    
   }
-  console.log(this.state.isUserNameValid)
 }
   signUpUser = (event) => {
     event.preventDefault();
@@ -96,8 +95,6 @@ handleOnBlurUserName = (event) => {
         errors : er
       })
     }
-    console.log(this.state);
-
     if (this.state.password.length === 0) {
       const er = this.state.errors
       er.push('Password is empty')
@@ -108,12 +105,10 @@ handleOnBlurUserName = (event) => {
     if (this.state.password_confirm.length === 0) {
       const er = this.state.errors
       er.push('Password Confirmation is empty')
-      console.log(er)
       this.setState({
         errors : er
       })
     }    
-    console.log(this.state);
     if (this.state.password !== this.state.password_confirm) {
       const er = this.state.errors
       er.push('Passwords Doesn\'t match')
@@ -135,7 +130,7 @@ handleOnBlurUserName = (event) => {
          localStorage.setItem('token', response.token);
       })
       .catch(error => {
-        M.toast({html: "Username already exists", classes :'toast-error'});
+        M.toast({html: error, classes :'toast-error'});
       })
     }
     this.setState({
