@@ -1,13 +1,20 @@
 const initState = {
-  email : '',
-  password : '',
-  isEmailValid : false,
-  loggedin : false,
+  loggedin : true,
   token : '',
-  errors : ''
 }
 
-const authReducer = (state =initState, action) => {
-  return state;
+export default  (state =initState, action) => {
+  if (action == 'USER_LOGGED_IN') {
+    return {
+       ...state,
+     loggedin : true
+   }
+  }
+  if (action == 'USER_LOGGED_OUT') {
+    return {
+      ...state,
+      loggedin : false
+    }
+  }
+  return state
 }
-export default authReducer

@@ -2,19 +2,28 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import M from  'materialize-css'
 
-import { connect , mapStateToProps }  from 'react-redux'
+import { connect  }  from 'react-redux'
 
 class LogIn extends Component {
-  
+  constructor() {
+    super()
+    this.state = {
+      email : '',
+      password : '',
+      isEmailValid : false,
+      loggedin : false,
+      token : '',
+      errors : ''
+    }
+  }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.props.auth);
   }
 
   render() {
     return (<div>Hello</div>)
   }
-  /*
   errorList =''
 
   handleEmail = (event) => {
@@ -108,11 +117,13 @@ handleOnBlurEmail = (event) => {
    </form>
     );
   }
-  */
 }
 
-mapStateToProps = (state) =>  {
+function mapStateToProps(state)  {
   console.log(state);
+  return ({
+    userstat : state.auth
+  })
 }
 
 export default connect(mapStateToProps)(LogIn);
