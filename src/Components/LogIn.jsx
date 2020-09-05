@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import M from  'materialize-css'
 
-class LogIn extends Component {
-   errorList =''
+import { connect , mapStateToProps }  from 'react-redux'
 
-  constructor() {
-    super();
-    
-    this.state = {
-      email : '',
-      password : '',
-      isEmailValid : false,
-      token : '',
-      errors : ''
-    }
+class LogIn extends Component {
+  
+
+  componentDidMount() {
+    console.log(this.props);
   }
+
+  render() {
+    return (<div>Hello</div>)
+  }
+  /*
+  errorList =''
 
   handleEmail = (event) => {
     const v = event.target.value
@@ -50,7 +50,7 @@ handleOnBlurEmail = (event) => {
 }
 
 
-  signUpUser = (event) => {
+  loginUser = (event) => {
     event.preventDefault();
     this.setState( {
       errors : ''
@@ -65,7 +65,9 @@ handleOnBlurEmail = (event) => {
       let {email, password} = this.state
       axios.post('http://127.0.0.1:8000/user/login', { email, password})
       .then(response => {
-        //  localStorage.setItem('token', response.token);
+        console.log(response)
+        localStorage.setItem('token', response.data);
+        this.props.history.push('/user/home')
       })
       .catch(error => {
         console.log(error)
@@ -75,7 +77,7 @@ handleOnBlurEmail = (event) => {
 
   render() {
     return (
-      <form onSubmit={this.signUpUser } >
+      <form onSubmit={this.loginUser } >
       <div className="container">
         <div className="row">
         <div className="input-field col s6 offset-s3 center">
@@ -85,13 +87,13 @@ handleOnBlurEmail = (event) => {
         <div className = "row">  
         <div className="input-field col s6 offset-s3">  
           <label htmlFor="email">Email</label>
-          <input  id="email" type="email" className="validate" onBlur={this.handleOnBlurEmail} onChange= {this.handleEmail}/>
+          <input  id="email" type="email" className="validate" onBlur={this.handleOnBlurEmail} onChange= {this.handleEmail} required/>
           {this.state.isEmailValid === true ? <span className="helper-text" data-success=""></span> :
           <span className="helper-text" data-error="Invalid E-mail format" ></span> }
         </div>
          <div className="input-field col s6 offset-s3">  
           <label htmlFor="password">Password</label>
-          <input  id="password" type="password" className="validate" onChange= {this.handlePassword}/>
+          <input  id="password" type="password" className="validate" onChange= {this.handlePassword} required/>
          </div>
        <div className = "input-field col s4 offset-s5">  
        <ul className="error-list">
@@ -106,6 +108,11 @@ handleOnBlurEmail = (event) => {
    </form>
     );
   }
+  */
 }
 
-export default LogIn;
+mapStateToProps = (state) =>  {
+  console.log(state);
+}
+
+export default connect(mapStateToProps)(LogIn);

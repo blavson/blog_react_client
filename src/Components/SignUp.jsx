@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { createBrowserHistory as history} from 'history';
 import M from  'materialize-css'
 import './SignUp.css'
 
 class SignUp extends Component {
-   errorList =''
-
   constructor() {
     super();
-    let errorList =''
     this.state = {
       username : '',
       email : '',
@@ -126,8 +122,9 @@ handleOnBlurUserName = (event) => {
       let {username, email, password} = this.state
       axios.post('http://127.0.0.1:8000/user/signup', {username, email, password})
       .then(response => {
-        M.toast({html: "User successfully signed up", classes :'toast-signedup'});
-         localStorage.setItem('token', response.token);
+        console.log(response.headers('Authorization'))
+        // M.toast({html: "User successfully signed up", classes :'toast-signedup'});
+        //  localStorage.setItem('token', response.token);
       })
       .catch(error => {
         M.toast({html: error, classes :'toast-error'});

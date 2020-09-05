@@ -2,8 +2,8 @@ import React from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
 import { NavLink } from 'react-router-dom';
 
-const NavBar = () => {
-  const token = localStorage.getItem('token')
+const NavBar = (props) => {
+  console.log(props);
   return (
     <div>
        <nav className="nav blue darken-4">
