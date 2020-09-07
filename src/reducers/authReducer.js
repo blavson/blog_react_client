@@ -1,20 +1,21 @@
+import authAction from '../actions/authAction'
+
+
 const initState = {
-  loggedin : true,
-  token : '',
+  loggedin : false,
+  _id : '',
 }
 
 export default  (state =initState, action) => {
-  if (action == 'USER_LOGGED_IN') {
-    return {
-       ...state,
-     loggedin : true
-   }
-  }
-  if (action == 'USER_LOGGED_OUT') {
+console.log(action)
+  if (action.type === 'UPDATE_USER_STATUS') {
+    console.log(state)
     return {
       ...state,
-      loggedin : false
-    }
+     loggedin : action.payload.logged,
+     _id : action.payload._id
+   }
   }
+  console.log(state);
   return state
 }

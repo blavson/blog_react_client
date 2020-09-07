@@ -3,6 +3,8 @@ import axios from 'axios'
 import M from  'materialize-css'
 
 import { connect  }  from 'react-redux'
+import { bindActionCreators } from 'redux';
+import authAction from '../actions/authAction'
 
 class LogIn extends Component {
   constructor() {
@@ -75,12 +77,13 @@ handleOnBlurEmail = (event) => {
       axios.post('http://127.0.0.1:8000/user/login', { email, password})
       .then(response => {
         console.log(response)
-        localStorage.setItem('token', response.data);
-        this.props.history.push('/user/home')
+         this.props.userAuth(true, response.data._id)
+         localStorage.setItem('token', response.data.token);
+         this.props.history.push('/user/home')
       })
       .catch(error => {
         console.log(error)
-        M.toast({html: "Passwords doesn't match", classes :'toast-error'})
+        M.toast({html: error, classes :'toast-error'})
       })
   }
 
@@ -126,4 +129,10 @@ function mapStateToProps(state)  {
   })
 }
 
-export default connect(mapStateToProps)(LogIn);
+function mapDispathcToProps(dispatch) {
+  return bindActionCreators({
+    userAuth : authAction
+  }, dispatch)
+}
+
+export default connect(mapStateToProps,mapDispathcToProps)(LogIn);
