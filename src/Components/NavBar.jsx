@@ -20,7 +20,7 @@ class  NavBar  extends React.Component   {
     <div>
        <nav className="nav blue darken-4">
     <div className="nav-wrapper">
-      <NavLink to="/home" className="brand-logo">Blog</NavLink>
+      <NavLink to="/" className="brand-logo">Blog</NavLink>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         {loginlogout}
       </ul>

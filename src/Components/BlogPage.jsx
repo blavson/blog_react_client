@@ -85,11 +85,11 @@ class BlogPage extends Component {
     event.preventDefault();
 
       const sendInfo = {
+          id : this.props.userstat._id,
           title : this.state.title,
           body : this.state.body,
           tags : this.state.tags
      }
-
         const options = {
           method: 'POST',
           headers: { 'content-type': 'application/json' },

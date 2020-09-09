@@ -9,7 +9,7 @@ class Logout extends Component {
     console.log("logoutUser");
     this.props.userAuth(false, this.props.userStats._id)
     localStorage.removeItem('login')
-    this.props.history.push('/home')
+    this.props.history.push('/')
     return
   }
 

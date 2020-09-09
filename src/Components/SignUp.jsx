@@ -153,23 +153,23 @@ handleOnBlurUserName = (event) => {
         <div className = "row">  
            <div className="input-field col s6 offset-s3">
               <label htmlFor="username">Username</label>
-              <input  id="username" type="text" className="validate" onBlur={this.handleOnBlurUserName} onChange= {this.handleUserName}/>
+              <input  id="username" type="text" className="validate" onBlur={this.handleOnBlurUserName} onChange= {this.handleUserName} required/>
               {usernameState === true ? <span className="helper-text" data-success=""></span> :
           <span className="helper-text" data-error="Username length must be at least 4 characters" ></span> }
           </div>
         <div className="input-field col s6 offset-s3">  
           <label htmlFor="email">Email</label>
-          <input  id="email" type="email" className="validate" onBlur={this.handleOnBlurEmail} onChange= {this.handleEmail}/>
+          <input  id="email" type="email" className="validate" onBlur={this.handleOnBlurEmail} onChange= {this.handleEmail} required/>
           {emailState === true ? <span className="helper-text" data-success=""></span> :
           <span className="helper-text" data-error="Invalid E-mail format" ></span> }
         </div>
          <div className="input-field col s6 offset-s3">  
           <label htmlFor="password">Password</label>
-          <input  id="password" type="password" className="validate" onChange= {this.handlePassword}/>
+          <input  id="password" type="password" className="validate" onChange= {this.handlePassword} required/>
          </div>
          <div className="input-field col s6 offset-s3">  
           <label htmlFor="password_confirm">Password Confirmation</label>
-          <input  id="password_confirm" type="password" className="validate" onChange= {this.handlePasswordConfirm}/>
+          <input  id="password_confirm" type="password" className="validate" onChange= {this.handlePasswordConfirm} required/>
          </div>         
        <div className = "input-field col s4 offset-s5">  
        <ul className="error-list">

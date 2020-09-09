@@ -15,6 +15,7 @@ import authAction from './actions/authAction'
 import { bindActionCreators } from 'redux';
 import axios from 'axios'
 import Logout from './Components/Logout';
+import LoIps from './Components/LoIps';
 
 class  App extends React.Component {
 
@@ -39,8 +40,9 @@ class  App extends React.Component {
    return ( 
        <Router >
          <Route path="/" component={NavBar} />
-         <Route exact path="/home" component={Home} />
+         <Route exact path="/" component={Home} />
          <Route exact path="/blog/create" component={BlogPage} />
+         <Route exact path="/blog/loremipsum" component={LoIps} />
          <Route exact path="/user/login" component={LogIn} />
          <Route exact path="/user/logout" component={Logout} />
          <Route exact path="/user/signup" component={SignUp} /> 
