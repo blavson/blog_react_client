@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './BlogPage.css'
 import M from  'materialize-css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import authAction from '../actions/authAction'
 
-export default class BlogPage extends Component {
+class BlogPage extends Component {
   errorList =''
   constructor() {
     super();
@@ -15,6 +18,23 @@ export default class BlogPage extends Component {
     }
   }
 
+  async componentDidMount() {
+
+    let lgn= JSON.parse(localStorage.getItem('login'))
+    if (lgn === null) {
+      this.props.userAuth(false, 0)
+      this.props.history.push('/user/login')
+      return
+    } 
+    
+    const resp =  await  axios.post('http://localhost:8000/user/secure/verify', {token : lgn.token})
+    .then(response => {
+      if (response.status === 200) 
+        this.props.userAuth(true, lgn._id)
+      else  
+       this.props.history.push('/user/login') 
+    }).catch(error => console.error(error));
+  }
 
   handleInputText= (event) => {
     this.setState({
@@ -120,7 +140,18 @@ export default class BlogPage extends Component {
    </form>
     )
   }
-  
-
-
  }
+ function mapStateToProps(state)  {
+  console.log(state);
+  return ({
+    userstat : state.auth
+  })
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    userAuth : authAction
+  }, dispatch)
+}
+
+  export default connect(mapStateToProps, mapDispatchToProps)(BlogPage)

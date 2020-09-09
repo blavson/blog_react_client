@@ -53,7 +53,7 @@ class SignUp extends Component {
   }
 
    validateEmail = (email)=> {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
@@ -114,7 +114,6 @@ handleOnBlurUserName = (event) => {
     }    
 
     if (this.state.errors.length > 0) {
-      console.log("WE got errors")
       this.errorList = this.state.errors.map((e, i) => {
        return ( <li key={i} className="error-list-item">{e}</li>)
       })
@@ -122,8 +121,11 @@ handleOnBlurUserName = (event) => {
       let {username, email, password} = this.state
       axios.post('http://127.0.0.1:8000/user/signup', {username, email, password})
       .then(response => {
-        console.log(response.headers('Authorization'))
-        // M.toast({html: "User successfully signed up", classes :'toast-signedup'});
+        console.log(response)
+         if (response.status === 201) {
+           M.toast({html: "User successfully signed up", classes :'toast-signedup'});
+
+         }
         //  localStorage.setItem('token', response.token);
       })
       .catch(error => {

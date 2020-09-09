@@ -1,13 +1,11 @@
 import React from 'react';
 import 'materialize-css/dist/css/materialize.min.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import authAction from '../actions/authAction'
 import { bindActionCreators } from 'redux';
 
 class  NavBar  extends React.Component   {
-
-
   render() {
     let loginlogout ='';
     if (!this.props.userStats.loggedin) 
@@ -15,8 +13,8 @@ class  NavBar  extends React.Component   {
                           <li><NavLink to="/user/signup">Sign Up</NavLink></li> 
                           <li><NavLink to="/user/login">Log In</NavLink></li></div>)  
     else  loginlogout= (<div>
-                          <li><NavLink to="/blog">New Blog</NavLink></li>
-                          <li><NavLink to="/user/logout" onClick={()=>this.props.userAuth(false)}>Log out</NavLink></li>
+                          <li><NavLink to="/blog/create">New Blog</NavLink></li>
+                          <li><NavLink to="/user/logout" >Log out</NavLink></li>
                         </div>)
   return (
     <div>
