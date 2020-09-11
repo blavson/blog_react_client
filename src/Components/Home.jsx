@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import ShowBlog from './ShowBlog'
 
 export default class Home extends Component {
  state = {posts : [{}]}
@@ -13,12 +14,6 @@ export default class Home extends Component {
     }
     
     
-    async goToLink(slug) {
-      const resp = await axios.get(`http://localhost:8000/blog/${slug}`)
-      const data = resp.data
-      console.log(data)
-    }
-
     render() {
       let rcards = this.state.posts
       console.log(rcards)
@@ -38,7 +33,7 @@ export default class Home extends Component {
              <p>Lorem ipsum, dolr sit amet consectetur adipisicing elit. Est, et?</p>
            </div>
            <div className="card-action">
-             <Link to="#" onClick={()=>this.goToLink(`${o.slug}`)} >View Full Post</Link>
+             <Link to={`/blog/${o.slug}`} >View Full Post</Link>
            </div>
          </div>
        </div>
