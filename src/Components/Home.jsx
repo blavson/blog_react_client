@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './Home.css'
+import { Link } from 'react-router-dom'
 
 export default class Home extends Component {
  state = {posts : [{}]}
@@ -12,6 +13,12 @@ export default class Home extends Component {
     }
     
     
+    async goToLink(slug) {
+      const resp = await axios.get(`http://localhost:8000/blog/${slug}`)
+      const data = resp.data
+      console.log(data)
+    }
+
     render() {
       let rcards = this.state.posts
       console.log(rcards)
@@ -19,17 +26,19 @@ export default class Home extends Component {
       if (rcards)
        psts = rcards.map((o, idx) => {
         return  (<div key={idx}  className="col s12 m12">
-           <h2 className="header">{o.slug} </h2>
             <div className="card horizontal">
          <div className="card-image" >
            <img  src={o.thumbnail}/>
          </div>
          <div className="card-stacked">
+           <div className="card-title">
+           {o.title}
+           </div> 
            <div className="card-content">
-             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, et?</p>
+             <p>Lorem ipsum, dolr sit amet consectetur adipisicing elit. Est, et?</p>
            </div>
            <div className="card-action">
-             <a href="#">{o.tags}</a>
+             <Link to="#" onClick={()=>this.goToLink(`${o.slug}`)} >View Full Post</Link>
            </div>
          </div>
        </div>

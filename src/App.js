@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './Components/Home';
-import BlogPage from './Components/BlogPage'
+import BlogPage from './Components/CreateBlog'
 import {BrowserRouter as Router,  Route, Redirect} from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import LogIn from './Components/LogIn'
@@ -16,6 +16,8 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios'
 import Logout from './Components/Logout';
 import LoIps from './Components/LoIps';
+import CreateBlog from './Components/CreateBlog';
+import ShowBlog from './Components/ShowBlog';
 
 class  App extends React.Component {
 
@@ -41,7 +43,8 @@ class  App extends React.Component {
        <Router >
          <Route path="/" component={NavBar} />
          <Route exact path="/" component={Home} />
-         <Route exact path="/blog/create" component={BlogPage} />
+         <Route exact path="/blog/create" component={CreateBlog} />
+         <Route exact path="/blog/:slug" component={ShowBlog} />
          <Route exact path="/blog/loremipsum" component={LoIps} />
          <Route exact path="/user/login" component={LogIn} />
          <Route exact path="/user/logout" component={Logout} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './BlogPage.css'
+import './CreateBlog.css'
 import M from  'materialize-css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

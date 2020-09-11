@@ -8,3 +8,20 @@
   width : 200px;
   object-fit: fill;
 }
+
+
+.card-title {
+  font-size: xx-large;
+  color: #4d29e9;
+  font-family: 'Cabin', serif;
+  justify-content: left;
+  margin-left: 5px;
+}
+
+.card-action a{
+  font-size: large;
+  color: #4d29e9 !important;
+  font-family: 'Cabin', serif;
+  justify-content: left;
+  margin-left: 5px;
+}
