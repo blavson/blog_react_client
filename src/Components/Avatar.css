@@ -1,0 +1,16 @@
+.author-image img {
+  float: left;
+  border-radius: 18%;
+}
+
+.author-name {
+  float : left;
+  font-size: large;
+  text-decoration: underline;
+}
+
+.author-descr {
+  float : inherit
+}
+
+

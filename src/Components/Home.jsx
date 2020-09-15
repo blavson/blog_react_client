@@ -3,6 +3,7 @@ import axios from 'axios'
 import './Home.css'
 import { Link } from 'react-router-dom'
 import ShowBlog from './ShowBlog'
+import Article from './Article'
 
 export default class Home extends Component {
  state = {posts : [{}]}
@@ -20,24 +21,16 @@ export default class Home extends Component {
       let psts 
       if (rcards)
        psts = rcards.map((o, idx) => {
-        return  (<div key={idx}  className="col s12 m12">
-            <div className="card horizontal">
-         <div className="card-image" >
-           <img  src={o.thumbnail}/>
-         </div>
-         <div className="card-stacked">
-           <div className="card-title">
-           {o.title}
-           </div> 
-           <div className="card-content">
-             <p>Lorem ipsum, dolr sit amet consectetur adipisicing elit. Est, et?</p>
-           </div>
-           <div className="card-action">
-             <Link to={`/blog/${o.slug}`} >View Full Post</Link>
-           </div>
-         </div>
+        return  (
+        <div key={idx}  className="col s12 m12">
+          <Article  title={o.title} 
+                    slug={o.slug} 
+                    thumbnail={o.thumbnail}  
+                    name={o.name} 
+                    user_id = {o.user_id}/> 
        </div>
-  </div>)})
+      )
+  })
     return (
       <div className="container">
         <div className="row">
