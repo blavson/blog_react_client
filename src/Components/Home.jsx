@@ -17,7 +17,7 @@ export default class Home extends Component {
     
     render() {
       let rcards = this.state.posts
-      console.log(rcards)
+      console.log(this.state.posts)
       let psts 
       if (rcards)
        psts = rcards.map((o, idx) => {

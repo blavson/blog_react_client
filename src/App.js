@@ -18,6 +18,7 @@ import Logout from './Components/Logout';
 import LoIps from './Components/LoIps';
 import CreateBlog from './Components/CreateBlog';
 import ShowBlog from './Components/ShowBlog';
+import Author from './Components/Author';
 
 class  App extends React.Component {
 
@@ -49,6 +50,7 @@ class  App extends React.Component {
          <Route exact path="/user/login" component={LogIn} />
          <Route exact path="/user/logout" component={Logout} />
          <Route exact path="/user/signup" component={SignUp} /> 
+         <Route exact path="/author/show/:id" component={Author} />
          <PrivateRoute exact path="/user/home"  component={UserHome} />
       </Router>
    )

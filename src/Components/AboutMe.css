@@ -1,0 +1,14 @@
+.author-container {
+  margin-top: 30px;
+}
+
+.left-side {
+  border: 1px solid #f1d4d4;
+  height: 600px;
+}
+
+.right-side-top {
+  border: 1px solid #f1d4d4;
+  height: 90px;
+  float: right;
+}
