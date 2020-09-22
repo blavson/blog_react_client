@@ -133,7 +133,6 @@ clrForm = () => {
 }
 
 function mapStateToProps(state)  {
-  console.log(state);
   return ({
     userstat : state.auth
   })

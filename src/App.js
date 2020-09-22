@@ -19,6 +19,7 @@ import LoIps from './Components/LoIps';
 import CreateBlog from './Components/CreateBlog';
 import ShowBlog from './Components/ShowBlog';
 import Author from './Components/Author';
+import 'materialize-css/dist/css/materialize.min.css'
 
 class  App extends React.Component {
 
