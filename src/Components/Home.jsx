@@ -16,35 +16,42 @@ class Home extends Component {
       order :'date_desc',  
       page : 1, 
       limit : 5,
+      total : 0,
       posts : []         
         }
   }
 
-    async getPostData  ( page, limit) {
+    async getPostData  ( order,page, limit) {
       const prms =  await axios.get('http://localhost:8000/', 
                                  {params :  
-                                  { order :'date_desc',  
-                                    page : page , 
-                                    limit : limit}})
+                                  { order,  
+                                    page, 
+                                    limit}
+                                  })
       const respcards = prms.data.results
-      const count = prms.data.count 
-      // this.props.pagingFunction(4,5,6)
+      const k = prms.data.total 
       this.setState({ 
+                      ...this.state,
                       posts : respcards,
-                      count :count
+                      total :k
       })
 
     }             
 
     async componentDidMount() {
-    M.AutoInit()
-    this.getPostData(this.state.order, this.state.page, this.state.limit)
+      console.log("KDM HOME")
+      M.AutoInit()
+      this.getPostData(this.state.order, this.state.page, this.state.limit)
     }
     
 
     sortChange =(event)=> {
+      this.setState({
+        ...this.state,
+        order  : event.target.value
+      })
       console.log(this.state)
-      this.getPostData(this.state.order, this.state.page, this.state.limit)
+      this.getPostData(event.target.value , this.state.page, this.state.limit)
     }
     
     render() {
@@ -71,7 +78,8 @@ class Home extends Component {
         <MyPagination  
                   getData={this.getPostData} 
                   limit = {this.state.limit}
-                  count = {this.state.count}
+                  total = {this.state.total}
+                  order = {this.state.order}
                   />
     </div>
     )}
